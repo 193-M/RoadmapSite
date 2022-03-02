@@ -1,0 +1,16 @@
+{% extends 'mng_base.html' %}
+{% block header %}マイページ{% endblock %}
+{% block contents %}
+<div class="profile-name">
+	{{ user.username }}さんのマイページ
+</div>
+<div class="container">
+	<div class="mypage-boxes">
+		<a href="/manage/students/" class="btn-index"><p class="inboxtext">学生名簿</p></a>
+		<a href="/manage/create/" class="btn-index"><p class="inboxtext">ロードマップ新規作成</p></a>
+		<a href="/manage/check/" class="btn-index"><p class="inboxtext">ロードマップ確認・編集</p></a>
+		<a href="/manage/class/" class="btn-index"><p class="inboxtext">クラス設定</p></a>
+		<a href="/manage/mypage/info/" class="btn-index"><p class="inboxtext">登録情報の確認</p></a>
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'mng_base.html' %}
+{% block header %}ロードマップ確認{% endblock %}
+{% block contents %}
+<div class="container">
+	<div class="select-area">
+		<form method="POST">{% csrf_token %}
+			{{ form }}<button type="submit">表示</button>
+			{% if edit %}
+				<a href="{% url 'mng_edit_content' title=title %}" class="btn-edit">{{ edit }}</a>
+			{% endif %}
+		</form>
+	</div>
+	<div class="roadmap-list">
+		{% if title %}
+			{% for item in contents %}
+			<a href="{% url 'mng_check_index' content=item.content %}">
+				<div class="contentbox">
+					{{ item.content }}
+				</div>
+			</a>
+			<div class="boxspace"></div>
+			{% endfor %}
+			{% if data == False %}
+				<p class="nodata-text">データがありません。</p>
+				<a href="{% url 'mng_create_content' title=title %}" class="btn-create">作成する</a>
+			{% endif %}
+		{% endif %}
+	</div>
+</div>
+{% endblock %}

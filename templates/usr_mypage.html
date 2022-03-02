@@ -1,0 +1,16 @@
+{% extends 'usr_base.html' %}
+{% load static %}
+{% block header %}マイページ{% endblock %}
+{% block contents %}
+<div class="profile-name">
+	{{ user.username }}さんのマイページ
+</div>
+
+<div class="container">
+	<div class="mypage-boxes">
+		<a href="/mypage/roadmap/" class="btn-index"><p class="inboxtext">ロードマップを確認する</p></a>
+		<a href="/mypage/task/" class="btn-index"><p class="inboxtext">タスクを確認する</p></a>
+		<a href="/mypage/info/" class="btn-index"><p class="inboxtext">登録情報を確認する</p></a>
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>RoadMap</title>
+		<link rel="stylesheet" type="text/css" id="applicationStylesheet" href="{% static 'style.css' %}"/>
+	</head>
+	<body>
+		<div class="header">
+			<svg class="header-block">
+				<rect id="usr_header-block" rx="0" ry="0" x="0" y="0" width="100%" height="150">
+				</rect>
+			</svg>
+			<div id="header-text">
+				学習ロードマップサイト
+			</div>
+			<div class="rm_logo">
+				<a href="/mypage/"><img id="rm_logo" src="/media/My_project_4.png"></a>
+			</div>
+			<div id="header-title">
+				{% block header %}{% endblock %}
+			</div>
+		</div>
+		{% block contents %}{% endblock %}
+	</body>
+</html>

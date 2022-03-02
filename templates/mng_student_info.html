@@ -1,0 +1,24 @@
+{% extends 'mng_base.html' %}
+{% block header %}{{ student.username }} - 登録情報{% endblock %}
+{% block contents %}
+<div class="container">
+	<div class="informations">
+		<h1 class="page-title">登録情報</h1>
+		<table class="info-table">
+			<tr>
+				<th>名前</th>
+				<td>{{ student.username }}</td>
+			</tr>
+			<tr>
+				<th>メールアドレス</th>
+				<td>{{ student.email }}</td>
+			</tr>
+			<tr>
+				<th>クラス</th>
+				<td>{{ student.userclass.userclass }}</td>
+			</tr>
+		</table>
+	</div>
+	<a href="" class="btn-logout">アカウントの削除</a>
+</div>
+{% endblock %}

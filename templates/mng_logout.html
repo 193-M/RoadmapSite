@@ -1,0 +1,10 @@
+{% extends 'mng_base.html' %}
+{% block header %}ログアウト{% endblock %}
+{% block contents %}
+<div class="container">
+    <p class="logout-text">本当にログアウトしますか？<br>ログアウトすると再度ログインするまで機能を使用できません。</p>
+    <form method="POST">{% csrf_token %}
+        <button class="btn-logout" type="submit">ログアウト</a>
+    </form>
+</div>
+{% endblock %}

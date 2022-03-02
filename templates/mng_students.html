@@ -1,0 +1,17 @@
+{% extends 'mng_base.html' %}
+{% block header %}学生名簿{% endblock %}
+{% block contents %}
+<div class="container">
+	<div class="select-area">
+		<form action="" method="POST">{% csrf_token %}
+			{{ form }}
+			<button type="submit">表示</button>
+		</form>
+	</div>
+	<div class="student-list">
+		{% for student in students %}
+			<a href="{% url 'mng_student_index' name=student.username %}" class="student-card">{{ student.username }}</a>
+		{% endfor %}
+	</div>
+</div>
+{% endblock %}

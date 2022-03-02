@@ -1,0 +1,21 @@
+{% extends 'usr_base.html' %}
+{% block header %}タスク{% endblock %}
+{% block contents %}
+<div class="container">
+	<div class="task-list">
+		<h1 class="page-title">タスク一覧</h1>
+		<table class="usr-task-table">
+			<tr>
+				<th>ロードマップ名</th>
+				<th>期限</th>
+				<th>達成状況</th>
+			</tr>
+			<tr>
+				<td><a href="">サンプルマップ</a></td>
+				<td>12/31</td>
+				<td>未達成</td>
+			</tr>
+		</table>
+	</div>
+</div>
+{% endblock %}

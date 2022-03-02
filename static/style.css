@@ -1,0 +1,438 @@
+/* ---- 共通 ---- */
+
+/* ヘッダー基礎 */
+.header {
+	position: absolute;
+	width: 100%;
+	height: 150px;
+	left: 0px;
+	top: 0px;
+}
+.header-block {
+	width: 100%;
+	height: 150px;
+}
+/* 利用者用ヘッダー */
+#usr_header-block {
+	fill: rgba(3,142,40,1);
+}
+/* 管理者用ヘッダー */
+#mng_header-block {
+	fill: rgb(0, 0, 0);
+}
+/* ヘッダーテキスト */
+#header-text {
+	left: 200px;
+	top: 45px;
+	position: absolute;
+	overflow: visible;
+	width: 470px;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Hiragino Kaku Gothic ProN;
+	font-size: 45px;
+	color: rgba(255,255,255,1);
+}
+#header-title {
+	position: absolute;
+	left: 715px;
+	top: 70px;
+	overflow: visible;
+	width: 102px;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Hiragino Kaku Gothic ProN;
+	font-size: 26px;
+	color: rgba(255,255,255,1);
+}
+/* サインアップ・ログイン画面遷移 */
+#page_jump {
+	left: 70%;
+	margin-top: 30px;
+	position: relative;
+	width: 300px;
+	text-align: right;
+	font-family: Hiragino Kaku Gothic ProN;
+	font-size: 15px;
+}
+/* ロゴ */
+#rm_logo {
+	position: absolute;
+	width: 150px;
+	height: 150px;
+	left: 0px;
+	top: 0px;
+	overflow: visible;
+}
+/* 内容基礎 */
+.container {
+	position: relative;
+	top: 200px;
+	left: 300px;
+	width: 800px;
+}
+/* サインアップ・ログインフォーム関連 */
+.form-signup {
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 30px;
+	display: flex;
+	flex-flow: column wrap;
+	align-items: start;
+	justify-content: center;
+	width: 300px;
+}
+.form-signup label {
+	margin-top: 10px;
+}
+.form-signup input {
+	width: 100%;
+	height: 28px;
+	font-size: 20px;
+}
+.form-signup select {
+	width: 100%;
+	height: 28px;
+	font-size: 18px;
+}
+.errorlist {
+	margin: 0;
+}
+.btn-login {
+	align-self: center;
+	font-size: 18px;
+	margin-top: 30px;
+	padding: 3px;
+	width: 150px;
+	cursor: pointer;
+}
+/* ログアウトボタン */
+.btn-logout {
+	position: relative;
+	left: 45%;
+	top: 60px;
+	padding: 3px;
+	color: black;
+	background-color: red;
+	cursor: pointer;
+}
+/* マイページ名前 */
+.profile-name {
+	position: relative;
+	left: 50px;
+	top: 200px;
+	font-size: 20px;
+}
+/* マイページボタンの総括 */
+.mypage-boxes {
+	display: flex;
+	flex-direction: column;
+}
+/* マイページボタン詳細 */
+.btn-index {
+  font-size: 35px;
+  padding: 10px;
+  text-decoration: none;
+  color: black;
+  background: #ECECEC;
+  width: 750px;
+  height: 120px;
+  margin-bottom: 45px;
+}
+.inboxtext {
+	text-align: center;
+}
+/* ページタイトル */
+.page-title {
+	position: relative;
+	text-align: center;
+	margin-bottom: 30px;
+}
+/* ユーザー情報枠 */
+.informations {
+	display: flex;
+	flex-flow: column wrap;
+}
+/* ユーザー情報表 */
+.info-table {
+	font-size: 22px;
+	width: 600px;
+	align-self: center;
+}
+.info-table th {
+	width: 40%;
+	text-align: center;
+	padding-bottom: 10px;
+}
+.info-table td {
+	width: 60%;
+	text-align: start;
+	padding-bottom: 20px;
+}
+/* ユーザー情報編集用 */
+.info-table input {
+	font-size: 20px;
+}
+.info-save {
+	display: block;
+	margin: 10px auto;
+}
+/* ログアウト確認テキスト */
+.logout-text {
+	text-align: center;
+	margin-top: 50px;
+	font-size: 20px;
+}
+/* ロードマップ選択 */
+#roadmap-select {
+	margin-left: 5px;
+	margin-bottom: 20px;
+}
+/* ロードマップ表示 */
+.roadmap-list {
+	display: flex;
+	flex-wrap: wrap;
+	align-content: center;
+	justify-content: center;
+}
+.roadmap-list a {
+	text-decoration: none;
+	color: black;
+}
+/* ロードマップボックス */
+.contentbox {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #E0DDDD;
+	height: 80px;
+	width: 600px;
+	font-size: 25px;
+}
+.boxspace {
+	width: 100%;
+	height: 30px;
+}
+/* セレクトボックス */
+.select-area {
+	text-align: center;
+	margin-bottom: 40px;
+}
+.select-area form select {
+	margin: 0 20px;
+	font-size: 18px;
+}
+/* タスク設定画面 */
+.task-list {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+/* ---- 利用者 ---- */
+
+/* タスク表 */
+.usr-task-table {
+	width: 100%;
+	border: solid 2px;
+	border-collapse: collapse;
+}
+.usr-task-table th, td {
+	font-size: 20px;
+	padding: 5px;
+}
+.usr-task-table th {
+	background-color: rgba(3,142,40,1);
+	color: white;
+	border-right: solid 1px black;
+	height: 50px;
+}
+.usr-task-table td {
+	text-align: center;
+	border: solid 1px;
+	height: 80px;
+}
+
+/* ----------- 管理者 ----------- */
+
+/* ロードマップ作成 タイトル */
+.create-title {
+	text-align: center;
+	font-size: 30px;
+	margin-bottom: 30px;
+}
+.titleform input {
+	font-size: 28px;
+}
+/* ロードマップ作成 内容  */
+.contentform {
+	width: 100%;
+}
+.contentform input{
+	width: 80%;
+	margin-left: 20px;
+	font-size: 25px;
+	text-align: center;
+}
+.contentform button {
+	margin-left: 10px;
+	font-size: 18px;
+}
+/* ロードマップ保存ボタン */
+.btn-save {
+	font-size: 18px;
+	padding: 2px;
+}
+/* 編集ボタン */
+.btn-edit {
+	color: green;
+	margin-left: 20px;
+}
+/* ロードマップ編集 タイトル */
+.edit-title input {
+	font-size: 30px;
+}
+/* ロードマップ編集 内容 */
+.edit-content {
+	text-align: center;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	width: 100%;
+}
+.edit-content input {
+	font-size: 25px;
+	width: 80%;
+	text-align: center;
+}
+/* ロードマップ編集 詳細へボタン */
+.btn-toindex {
+	background-color: #ECECEC;
+	width: 50px;
+	text-align: center;
+	align-self: center;
+	margin-left: 20px;
+}
+/* 変更保存ボタン */
+.btn-save {
+	font-size: 15px;
+	padding: 3px;
+}
+/* データなしテキスト */
+.nodata-text {
+	width: 100%;
+	text-align: center;
+}
+/* 作成画面遷移ボタン */
+.btn-create {
+	text-align: center;
+	text-decoration: none;
+	color: black;
+	background-color: #ECECEC;
+	font-size: 20px;
+	padding: 5px;
+	margin-top: 20px;
+}
+/* 削除チェックボックス */
+.delete-check {
+	margin-left: 5px;
+}
+/* 学生名簿 */
+.student-list {
+	display: flex;
+	justify-content: start;
+	flex-wrap: wrap;
+	gap: 20px;
+}
+.student-card {
+	width: 350px;
+	height: 100px;
+	background: #ECECEC;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: black;
+	font-size: 20px;
+	text-decoration: none;
+}
+/* 管理者用タスク表 */
+.mng-task-table {
+	width: 100%;
+	border: solid 2px;
+	border-collapse: collapse;
+}
+.mng-task-table th, td {
+	font-size: 20px;
+	padding: 5px;
+}
+.mng-task-table th {
+	background-color: black;
+	color: white;
+	border-right: solid 1px grey;
+	height: 50px;
+}
+.mng-task-table td {
+	text-align: center;
+	border: solid 1px;
+	height: 80px;
+}
+/* タスク数表示 */
+.task-len {
+	font-size: 20px;
+	margin-bottom: 20px;
+}
+/* タスク設定ボタン */
+.btn-settask {
+	font-size: 20px;
+	padding: 5px;
+	margin: 20px 0 0 auto;
+}
+/* クラス一覧 */
+.class-list {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+}
+/* クラスボックス */
+.class-box {
+	width: 40%;
+	height: 60px;
+	font-size: 25px;
+	background-color: #E0DDDD;
+	margin-bottom: 20px;
+	text-align: center;
+	margin-left: 5%;
+}
+.class-box input {
+	font-size: 20px;
+	margin-top: 15px;
+}
+.class-box p {
+	margin-top: 10px;
+}
+/* クラス作成フォーム */
+.form-box {
+	width: 70%;
+	height: 60px;
+	margin-left: 15%;
+	text-align: center;
+	background-color: #E0DDDD;
+	display: flex;
+	align-items: center;
+}
+.class-form {
+	width: 100%;
+}
+.class-form input {
+	width: 80%;
+	font-size: 25px;
+}
+.class-form button {
+	font-size: 20px;
+}
+/* クラス編集保存ボタン */
+.btn-class-save {
+	display: block;
+	text-align: center;
+	margin: 10px auto;
+}

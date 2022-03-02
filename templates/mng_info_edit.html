@@ -1,0 +1,23 @@
+{% extends 'mng_base.html' %}
+{% block header %}登録情報編集{% endblock %}
+{% block contents %}
+<div class="container">
+    <form action="" method="POST">{% csrf_token %}
+	    <div class="informations">
+            <h1 class="page-title">登録情報</h1>
+            <table class="info-table">
+                <tr>
+                    <th>名前</th>
+                    <td>{{ form.username }}</td>
+                </tr>
+                <tr>
+                    <th>メールアドレス</th>
+                    <td>{{ form.email }}</td>
+                </tr>
+                {{form.errors}}
+            </table>
+        </div>
+        <button type="submit" class="info-save">保存</button>
+    </form>
+</div>
+{% endblock %}

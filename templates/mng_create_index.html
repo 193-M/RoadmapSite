@@ -1,0 +1,31 @@
+{% extends 'mng_base.html' %}
+{% block header %}新規作成 - 詳細{% endblock %}
+{% block contents %}
+<div class="container">
+	<div class="create-area">
+		<div class="create-title">
+			ボックス名：{{ content }}
+		</div>
+		<a href="{% url 'mng_create_content' title=title %}">内容作成画面</a>
+		<a href="{% url 'mng_edit_index' title=title content=content %}" class="btn-edit">編集画面</a>
+		{{ success }}{{ error }}
+		<div class="roadmap-list">
+			{% for index in indexes %}
+				<div class="contentbox">
+					{{ index.index }}
+				</div>
+                <div class="boxspace"></div>
+			{% endfor %}
+			<div class="contentbox">
+				<form method="POST" class="contentform">{% csrf_token %}
+					{{ form.index }}
+					{{ form.index_title }}
+					<button type="submit" class="btn-content-create">作成</button>
+				</form>
+			</div>
+			<div class="boxspace"></div>
+            {{ form.errors }}
+		</div>
+	</div>
+</div>
+{% endblock %}

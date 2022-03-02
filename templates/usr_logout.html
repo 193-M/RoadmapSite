@@ -1,0 +1,10 @@
+{% extends 'usr_base.html' %}
+{% block header %}ログアウト{% endblock %}
+{% block contents %}
+<div class="container">
+    <p class="logout-text">本当にログアウトしますか？<br>ログアウトすると再度ログインするまで機能を使用できません。</p>
+    <form method="POST">{% csrf_token %}
+        <button type="submit" class="btn-logout">ログアウト</button>
+    </form>
+</div>
+{% endblock %}

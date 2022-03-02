@@ -1,0 +1,25 @@
+{% extends 'usr_base.html' %}
+{% block header %}登録情報{% endblock %}
+{% block contents %}
+<div class="container">
+	<div class="informations">
+		<h1 class="page-title">登録情報</h1>
+		<a href="{% url 'usr_info_edit' %}" class="btn-edit">編集</a>
+		<table class="info-table">
+			<tr>
+				<th>名前</th>
+				<td>{{ user.username }}</td>
+			</tr>
+			<tr>
+				<th>メールアドレス</th>
+				<td>{{ user.email }}</td>
+			</tr>
+			<tr>
+				<th>クラス</th>
+				<td>{{ user.userclass.userclass }}</td>
+			</tr>
+		</table>
+	</div>
+	<a href="/logout/" class="btn-logout">ログアウト</a>
+</div>
+{% endblock %}

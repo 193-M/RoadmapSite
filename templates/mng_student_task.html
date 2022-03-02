@@ -1,0 +1,22 @@
+{% extends 'mng_base.html' %}
+{% block header %}{{ student.username }} - 学習状況{% endblock %}
+{% block contents %}
+<div class="container">
+	<div class="task-list">
+		<p class="task-len">設定したタスク：1件</p>
+		<table class="mng-task-table">
+			<tr>
+				<th>ロードマップ名</th>
+				<th>期限</th>
+				<th>達成状況</th>
+			</tr>
+			<tr>
+				<td>サンプルマップ</td>
+				<td>12/31</td>
+				<td>未達成</td>
+			</tr>
+		</table>
+		<button class="btn-settask" type="button">+タスクを設定</button>
+	</div>
+</div>
+{% endblock %}

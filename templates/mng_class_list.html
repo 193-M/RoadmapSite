@@ -1,0 +1,21 @@
+{% extends 'mng_base.html' %}
+{% block header %}クラス設定{% endblock %}
+{% block contents %}
+<div class="container">
+	<h1 class="page-title">クラス一覧</h1>
+	<a href="{% url 'mng_class_edit' %}" class="btn-edit">編集</a>
+	<div class="class-list">
+		{% for class in class_list %}
+			<div class="class-box">
+				<p>{{ class.userclass }}</p>
+			</div>
+		{% endfor %}
+		<div class="form-box">
+			<form method="POST" class="class-form">{% csrf_token %}
+				{{ form.userclass }}
+				<button type="submit">作成</button>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}

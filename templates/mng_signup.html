@@ -1,0 +1,21 @@
+{% extends 'mng_base.html' %}
+{% block header %}サインアップ{% endblock %}
+{% block contents %}
+<div class="container">
+	<form class="form-signup" method="POST">{% csrf_token %}
+		{% for field in form %}
+			{% if field.is_hidden %}
+				{{ field.as_hidden }}
+			{% else %}
+				{{ field.label_tag }}
+				{{ field }}
+				{{ field.errors }}
+			{% endif %}
+		{% endfor %}
+		<button class="btn-login" type="submit">サインアップ</button>
+	</form>
+    <div id="page_jump">
+        <p>登録済みの方は<a href="/manage/login/">ログイン</a>ページへ</p>
+    </div>
+</div>
+{% endblock %}

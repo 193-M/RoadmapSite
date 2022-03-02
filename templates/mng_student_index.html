@@ -1,0 +1,10 @@
+{% extends 'mng_base.html' %}
+{% block header %}{{ student.username }}{% endblock %}
+{% block contents %}
+<div class="container">
+	<div class="mypage-boxes">
+		<a href="{% url 'mng_student_task' name=student.username %}" class="btn-index"><p class="inboxtext">学習状況の確認・タスクの設定</p></a>
+		<a href="{% url 'mng_student_info' name=student.username %}" class="btn-index"><p class="inboxtext">登録情報の確認・編集</p></a>
+    </div>
+</div>
+{% endblock %}
