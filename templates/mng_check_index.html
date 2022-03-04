@@ -6,12 +6,17 @@
         ボックス名：{{ content }}
     </div>
     <div class="roadmap-list">
-        {% for item in indexes %}
-        <div class="contentbox">
-            {{ item.index }}
-        </div>
-        <div class="boxspace"></div>
-        {% endfor %}
+        {% if data %}
+            {% for item in indexes %}
+            <div class="contentbox">
+                {{ item.index }}
+            </div>
+            <div class="boxspace"></div>
+            {% endfor %}
+        {% else %}
+            <p class="nodata-text">データがありません。</p>
+            <a href="{% url 'mng_create_index' title=title content=content %}" class="btn-create">作成する</a>
+        {% endif %}
     </div>
 </div>
 {% endblock %}

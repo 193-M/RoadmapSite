@@ -7,10 +7,11 @@
             <div class="edit-title">
                 {{ titleform }}
             </div>
+            <a href="{% url 'mng_delete_roadmap' title=title %}" class="btn-todelete">ロードマップ削除</a>
         </div>
         <a href="{% url 'mng_check' %}">確認画面</a>
         {% if data %}
-            <a href="{% url 'mng_create_content' title=title %}">ボックス追加</a>
+        <a href="{% url 'mng_create_content' title=title %}">ボックス追加</a>
         {% endif %}
         {{ success }}
         <div class="roadmap-list">

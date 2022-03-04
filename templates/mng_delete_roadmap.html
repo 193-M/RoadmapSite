@@ -1,0 +1,10 @@
+{% extends 'mng_base.html' %}
+{% block header %}ロードマップ削除{% endblock %}
+{% block contents %}
+<div class="container">
+	<p class="logout-text">本当にロードマップを削除しますか？<br>対象ロードマップ：{{ title }}</p>
+    <form method="POST">{% csrf_token %}
+        <button class="btn-logout" type="submit">削除する</a>
+    </form>
+</div>
+{% endblock %}

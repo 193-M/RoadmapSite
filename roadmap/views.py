@@ -12,8 +12,9 @@ def top(request):
 
 # サインアップ
 def usr_signupview(request): 
+    form = CustomUserCreationForm(request.POST or None)
+    context = {'form': form}
     if request.method == 'POST':
-        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             form.save()
             email = form.cleaned_data.get('email')
@@ -21,16 +22,13 @@ def usr_signupview(request):
             user = authenticate(email = email, password = password)
             login(request, user)
             return redirect('/mypage')
-        else:
-            return render(request, 'usr_signup.html', {'form': form})
-    else:
-        form = CustomUserCreationForm()
-    return render(request, 'usr_signup.html', {'form': form})
+    return render(request, 'usr_signup.html', context)
 
 # ログイン
 def usr_loginview(request):
+    form = LoginForm(request.POST or None)
+    context = {'form':form}
     if request.method == 'POST':
-        form = LoginForm(request.POST)
         email = form.data['email']
         password = form.data['password']
         user = authenticate(request, email = email, password = password)
@@ -38,10 +36,8 @@ def usr_loginview(request):
             login(request, user)
             return redirect('usr_mypage')
         else:
-            return render(request, 'usr_login.html', {"error":"メールアドレスかパスワードが間違っています。", 'form':form})
-    else:
-        form = LoginForm()
-    return render(request, 'usr_login.html', {'form':form})
+            context = {'form':form, "error":"メールアドレスかパスワードが間違っています。"}
+    return render(request, 'usr_login.html', context)
 
 # マイページ
 def usr_mypageview(request):
@@ -54,11 +50,12 @@ def usr_infoview(request):
 # 登録情報編集ページ
 def usr_info_editview(request):
     form = UserEditForm(request.POST or None, instance=request.user)
+    context = {'form':form}
     if request.method == 'POST':
         if form.is_valid():
             form.save()
             return redirect('usr_info')
-    return render(request, 'usr_info_edit.html', {'form':form})
+    return render(request, 'usr_info_edit.html', context)
 
 # ログアウト用ページ
 def usr_logoutview(request):
@@ -75,6 +72,7 @@ def usr_taskview(request):
 def usr_roadmapview(request):
     form = RoadMapSelectForm(request.POST or None)
     form.fields['select'].queryset = RoadMapTitles.objects.all()
+    context = {'form': form}
     if request.method == 'POST':
         if form.is_valid():
             title = form.cleaned_data['select']
@@ -83,9 +81,8 @@ def usr_roadmapview(request):
             data = True
             if len(contents) == 0:
                 data = False
-            context = {'contents':contents, 'form':form, 'title':roadmap.title, 'edit':"編集", 'data':data}
-            return render(request, 'usr_roadmap.html', context)
-    return render(request, 'usr_roadmap.html', {'form': form})
+            context = {'contents':contents, 'form':form, 'title':roadmap.title, 'data':data}
+    return render(request, 'usr_roadmap.html', context)
 
 # ロードマップ確認詳細ページ
 def usr_roadmap_indexview(request, content):
@@ -100,6 +97,7 @@ def usr_roadmap_indexview(request, content):
 # サインアップ
 def mng_signupview(request):
     form = ManagerCreationForm(request.POST or None, initial={'is_staff':True})
+    context = {'form':form}
     if request.method == 'POST':
         if form.is_valid():
             form.save()
@@ -108,14 +106,13 @@ def mng_signupview(request):
             user = authenticate(email = email, password = password)
             login(request, user)
             return redirect('mng_mypage')
-        else:
-            return render(request, 'mng_signup.html', {'form':form})
-    return render(request, 'mng_signup.html', {'form': form})
+    return render(request, 'mng_signup.html', context)
 
 # ログイン
 def mng_loginview(request):
+    form = LoginForm(request.POST or None)
+    context = {'form':form}
     if request.method == 'POST':
-        form = LoginForm(request.POST)
         email = form.data['email']
         password = form.data['password']
         user = authenticate(request, email = email, password = password)
@@ -124,12 +121,10 @@ def mng_loginview(request):
                 login(request, user)
                 return redirect('mng_mypage')
             else:
-                render(request, 'mng_login.html', {'form':form, 'message': "ログイン権限がありません。"})
+                context = {'form':form, 'message': "ログイン権限がありません。"}
         else:
-            return render(request, 'mng_login.html', {'message': "メールアドレスかパスワードが間違っています。", 'form':form})
-    else:
-        form = LoginForm()
-    return render(request, 'mng_login.html', {'form': form})
+            context = {'form':form, 'message': "メールアドレスかパスワードが間違っています。"}
+    return render(request, 'mng_login.html', context)
 
 # マイページ
 def mng_mypageview(request):
@@ -148,11 +143,12 @@ def mng_info_editview(request):
     if not request.user.is_staff:
         return redirect('usr_mypage')
     form = ManagerEditForm(request.POST or None, instance=request.user)
+    context = {'form':form}
     if request.method == 'POST':
         if form.is_valid():
             form.save()
             return redirect('mng_info')
-    return render(request, 'mng_info_edit.html', {'form':form})
+    return render(request, 'mng_info_edit.html', context)
 
 # ログアウトページ
 def mng_logoutview(request):
@@ -167,16 +163,15 @@ def mng_logoutview(request):
 def mng_create_titleview(request):
     if not request.user.is_staff:
         return redirect('usr_mypage')
+    form = RoadMapTitleForm(request.POST or None)
+    context = {'form':form}
     if request.method == 'POST':
-        form = RoadMapTitleForm(request.POST)
         if form.is_valid():
             new = form.save()
             return redirect('mng_create_content', title=new.title)
         else:
-            return render(request, 'mng_create_title.html', {'form':form, 'message':"入力に不備があるか、既に同名のマップが存在します。"})
-    else:
-        form = RoadMapTitleForm()
-    return render(request, 'mng_create_title.html', {'form':form})
+            context = {'form':form, 'message':"入力に不備があるか、既に同名のマップが存在します。"}
+    return render(request, 'mng_create_title.html', context)
 
 # redirect用url生成
 def url_generate(url):
@@ -200,7 +195,6 @@ def mng_create_contentview(request, title):
             return redirect(new_url)
         else:
             context = {'form':form, 'title':title, 'contents':contents, 'error':"同じ名前のボックスが存在します。"}
-            return render(request, 'mng_create_content.html', context)
     else:
         if 'change' in request.GET:
             context = {'form':form, 'title':title, 'contents':contents, 'success':"ボックスを追加しました"}
@@ -224,7 +218,6 @@ def mng_create_indexview(request, title, content):
             return redirect(new_url)
         else:
             context = {'form':form, 'title':title, 'content':select_content, 'indexes':indexes, 'error':"既に同様のボックスが存在します。"}
-            return render(request, 'mng_create_index.html', context)
     else:
         if 'change' in request.GET:
             context = {'form':form, 'title':title, 'content':select_content, 'indexes':indexes, 'success':"ボックスを追加しました"}
@@ -238,6 +231,7 @@ def mng_checkview(request):
         return redirect('usr_mypage')
     form = RoadMapSelectForm(request.POST or None)
     form.fields['select'].queryset = RoadMapTitles.objects.all()
+    context = {'form': form}
     if request.method == 'POST':
         if form.is_valid():
             title = form.cleaned_data['select']
@@ -246,18 +240,22 @@ def mng_checkview(request):
             data = True
             if len(contents) == 0:
                 data = False
-            context = {'contents':contents, 'form':form, 'title':roadmap.title, 'edit':"編集", 'data':data}
-            return render(request, 'mng_check_roadmap.html', context)
-    return render(request, 'mng_check_roadmap.html', {'form': form})
+            context = {'contents':contents, 'form':form, 'title':roadmap.title, 'data':data}
+    return render(request, 'mng_check_roadmap.html', context)
 
 # ロードマップ確認詳細ページ
 def mng_check_indexview(request, content):
     if not request.user.is_staff:
         return redirect('usr_mypage')
     contents = RoadMapContents.objects.get(content=content)
+    roadmap = contents.content_title
+    title = roadmap.title
     select_content = contents.content
     indexes = contents.contenttitle.all()
-    context = {'content':select_content, 'indexes':indexes}
+    data = True
+    if len(indexes) == 0:
+        data = False
+    context = {'title':title, 'content':select_content, 'indexes':indexes, 'data':data}
     return render(request, 'mng_check_index.html', context)
 
 # ロードマップ編集ページ
@@ -303,7 +301,6 @@ def mng_edit_indexview(request, title, content):
             return redirect(new_url)
         else:
             context = {'formset':formset, 'title':title, 'content':content, 'data':data}
-            return render(request, 'mng_edit_index.html', context)
     else:
         if 'change' in request.GET:
             context = {'title':title, 'content':content, 'formset':formset, 'data':data, 'success':"変更を適用しました"}
@@ -323,21 +320,27 @@ def mng_class_listview(request):
             form.save()
     return render(request, 'mng_class_list.html', context)
 
+# ロードマップ削除ページ
+def mng_delete_roadmapview(request, title):
+    context = {'title':title}
+    if request.method == 'POST':
+        RoadMapTitles.objects.filter(title=title).delete()
+        return redirect('mng_check')
+    return render(request, 'mng_delete_roadmap.html', context)
+
 # クラス編集ページ
 def mng_class_editview(request):
     if not request.user.is_staff:
         return redirect('usr_mypage')
     formset = ClassEdit_Formset(request.POST or None, queryset=UserClass.objects.all())
+    context = {'formset':formset}
     if request.method == 'POST':
         if formset.is_valid():
             formset.save()
             redirect('mng_class_edit')
             context = {'formset':formset, 'message':"変更を適用しました"}
-            return render(request, 'mng_class_edit.html', context)
         else:
             context = {'formset':formset, 'message':"同名のクラスが存在します"}
-            return render(request, 'mng_class_edit.html', context)
-    context = {'formset':formset}
     return render(request, 'mng_class_edit.html', context)
 
 # 学生名簿ページ
@@ -345,12 +348,12 @@ def mng_studentsview(request):
     if not request.user.is_staff:
         return redirect('usr_mypage')
     form = SelectClassForm(request.POST or None)
+    context = {'form':form}
     if request.method == 'POST' and form.is_valid():
         select_class = form.cleaned_data['select_class']
         students = CustomUser.objects.filter(userclass=select_class)
         context = {'form':form, 'students':students}
-        return render(request, 'mng_students.html', context)
-    return render(request, 'mng_students.html', {'form':form})
+    return render(request, 'mng_students.html', context)
 
 # 学生詳細ページ
 def mng_student_indexview(request, name):
@@ -367,6 +370,28 @@ def mng_student_infoview(request, name):
     student = CustomUser.objects.get(username=name)
     context = {'student':student}
     return render(request, 'mng_student_info.html', context)
+
+# 学生情報編集ページ
+def mng_student_infoeditview(request, name):
+    if not request.user.is_staff:
+        return redirect('usr_mypage')
+    student = CustomUser.objects.get(username=name)
+    form = UserEditForm(request.POST or None, instance=student)
+    context = {'form':form, 'student':student}
+    if request.method == 'POST' and form.is_valid():
+        form.save()
+        return redirect('mng_student_info', name)
+    return render(request, 'mng_student_infoedit.html', context)
+
+# 学生アカウント削除ページ
+def mng_student_deleteview(request, name):
+    if not request.user.is_staff:
+        return redirect('usr_mypage')
+    context = {'name':name}
+    if request.method == 'POST':
+        CustomUser.objects.filter(name=name).delete()
+        return redirect('mng_students')
+    return render(request, 'mng_student_delete.html', context)
 
 # 学生タスク確認ページ
 def mng_student_taskview(request, name):

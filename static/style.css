@@ -337,6 +337,13 @@
 .delete-check {
 	margin-left: 5px;
 }
+/* ロードマップ削除画面遷移ボタン */
+.btn-todelete {
+	color: red;
+	font-size: 18px;
+	position: relative;
+	left: 50%;
+}
 /* 学生名簿 */
 .student-list {
 	display: flex;

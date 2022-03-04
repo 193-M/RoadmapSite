@@ -1,0 +1,11 @@
+{% extends 'mng_base.html' %}
+{% block header %}アカウント削除{% endblock %}
+{% block contents %}
+<div class="container">
+    <a href="{% url 'mng_student_info' name=student.username %}">戻る</a>
+	<p class="logout-text">本当にアカウントを削除しますか？<br>対象アカウント：{{ name }}</p>
+    <form method="POST">{% csrf_token %}
+        <button class="btn-logout" type="submit">削除する</a>
+    </form>
+</div>
+{% endblock %}
