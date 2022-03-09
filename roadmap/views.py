@@ -318,6 +318,7 @@ def mng_class_listview(request):
     if request.method == 'POST':
         if form.is_valid():
             form.save()
+            return redirect('mng_class_list')
     return render(request, 'mng_class_list.html', context)
 
 # ロードマップ削除ページ
